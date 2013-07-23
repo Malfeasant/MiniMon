@@ -6,7 +6,7 @@ start:
 	call stringOut_16
 .halt:
 	hlt
-	jmp hlt
+	jmp .halt
 
 stringOut_16:	; prints a null-terminated string pointed to by SI
 	mov ah, 0x0e	; int 10 character out function
@@ -19,7 +19,7 @@ stringOut_16:	; prints a null-terminated string pointed to by SI
 .end:
 	ret
 	
-sAlive	db	"Ahoy!\r\n\0"
+sAlive	db	`Ahoy!\r\n\0`
 
 times 510 - ($ - $$) db 0x2b
 bootSig dw 0xaa55
